@@ -8,7 +8,7 @@ website="${website//"</tr>"/$'</tr>\n'}"
 date=$(date)
 echo -e "Market Cap of Top 10 Cryptocurrencies : \n$date" >/home/ubuntu/project/list.txt
 echo -e "Daily Market Cap Evolution of Top 10 Cryptocurrencies : \n$date" >/home/ubuntu/project/evolution.txt
-URL="https://api.telegram.org/bot5622861740:AAG3BTjR4QnNxjaS1yKfFO-n1HQEs23nI_s/sendMessage"
+URL="https://api.telegram.org/bot<YOURBOTTOKEN>/sendMessage"
 declare totalmc="0"
 echo -e "$website" >/home/ubuntu/project/website.txt
 website=$(head -n 10 /home/ubuntu/project/website.txt)
@@ -51,7 +51,7 @@ done
 
 # Message that is sent every hour
 echo $textmessage >> /home/ubuntu/project/data.txt # Data collection
-curl -s -X POST $URL --data "text=$textmessage" --data "chat_id=-1001825184996"
+curl -s -X POST $URL --data "text=$textmessage" --data "chat_id=<YOURCHATID>"
 echo -e "\nMessage sent, check your Telegram"
 
 # Daily Stat
@@ -61,7 +61,7 @@ if [ $time == '20:00' ]
 
         # Last 24h evolution message
         evolutionmessage=$(head -n 11 /home/ubuntu/project/evolution.txt)
-        curl -s -X POST $URL --data "text=$evolutionmessage" --data "chat_id=-1001825184996"
+        curl -s -X POST $URL --data "text=$evolutionmessage" --data "chat_id=<YOURCHATID>"
         echo -e "\nMessage sent, check your Telegram"
 
         # We calculate the mean of the marketcap proportion of each Cryptocurrency
@@ -90,7 +90,7 @@ if [ $time == '20:00' ]
 
         # Daily Stat, market cap proportion mean message 
         dailymessage==$(head -n 12 /home/ubuntu/project/mean.txt)
-        curl -s -X POST $URL --data "text=$dailymessage" --data "chat_id=-1001825184996"
+        curl -s -X POST $URL --data "text=$dailymessage" --data "chat_id=<YOURCHATID>"
         echo -e "\nMessage sent, check your Telegram"
         echo "">/home/ubuntu/project/proportion.txt
 fi
