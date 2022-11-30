@@ -9,3 +9,8 @@ You can host this script on your machine, or on any remote server.
 
 Don't forget to change your Bot Token <YOURBOTTOKEN> and the Chat ID <YOURCHATID> of the conversation you want to receive the message on. 
 Make the script executable with the chmod command. 
+Use a cronjob to make it run every hour : 
+
+0 */1 * * * <Path to your script>
+
+You're done ! Enjoy the spam from your bot.
